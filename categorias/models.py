@@ -1,14 +1,12 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 
 VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
 
 # Create your models here.
-class blogs(models.Model):
+class categorias(models.Model):
 
-    nombre = models.CharField(max_length=200)
-    usuario = models.ForeignKey(User)
+    nombre = models.CharField(max_length=50)
     creado_el = models.DateTimeField(auto_now_add=True)
     modificado_el = models.DateTimeField(auto_now=True)
     visible = models.CharField(max_length=2, choices=VISIBILIDAD, default='SI')

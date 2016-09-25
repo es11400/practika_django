@@ -1,5 +1,6 @@
 idea/
 env/
+uploads/
 *.pyc
 requirements.txt
 db.sqlite3

@@ -8,7 +8,7 @@ VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
 
 def media_url(instance, nombrefichero):
 
-    return "%s/%s" %(instance.id, nombrefichero)
+    return "%s/%s/%s" %(instance.blog.id, str(instance.id), nombrefichero)
 
 class post(models.Model):
 

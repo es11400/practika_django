@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Cuentame</title>
+        {% block stylesheets %}
+            <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+        {% endblock %}
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+    </head>
+
+    <body>
+      {% include "includes/nav.html" %}
+      <section>
+          <div class="container">
+              <h1>Cuentame</h1>
+              <h5 class="flow-text">¿Tienes una historia? Pues cuéntanosla.</h5>
+              <h5 class="flow-text">¿No tienes nada que contar? Pues valora la de los demás.</h5>
+          </div>
+      </section>
+      {% block section %}
+
+      {% endblock %}
+
+      {% include "includes/footer.html" %}
+      {% include "includes/modals.html" %}
+
+      {% block javascripts %}
+        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+      {% endblock %}
+    </body>
+  </html>

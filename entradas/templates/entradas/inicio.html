@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block section %}
+    {% if post_list|length > 0 %}
+        {% include "entradas/includes/post_loop.html" %}
+    {% else %}
+        {% include "entradas/includes/join_us.html" %}
+    {% endif %}
+{% endblock %}

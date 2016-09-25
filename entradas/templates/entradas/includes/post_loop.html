@@ -1,0 +1,9 @@
+<section>
+    <div class="container center-align">
+        {% for post in posts_list %}
+            <a href="/photos/{{ photo.pk }}">
+                <img src="{{ photo.url }}" alt="{{ photo.name }}" title="{{ photo.name }}" height="140">
+            </a>
+        {% endfor %}
+    </div>
+</section>

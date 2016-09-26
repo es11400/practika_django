@@ -1,9 +1,35 @@
 <section>
     <div class="container center-align">
-        {% for post in posts_list %}
-            <a href="/photos/{{ photo.pk }}">
-                <img src="{{ photo.url }}" alt="{{ photo.name }}" title="{{ photo.name }}" height="140">
-            </a>
+        {% for post in post_list %}
+            <article class="entrada">
+                <div class="card hoverable">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="uploads/{{ post.imagen }}" alt="{{ post.titulo }}" title="{{ post.blog.nombre }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4" data-id="{{post.id}}"> {{ post.titulo }}<i class="material-icons right">more_vert</i></span>
+                        <p class="justify-align">{{ post.texto_corto}}</p>
+                    </div>
+                    <div class="card-action">
+                        <div class="row">
+                            <div class="col s12 m12 l12 left-align">
+                                <div class="chip">
+                                    {{ post.blog.usuario }}
+                                </div>
+                                <p class="fecha-articulo">{{ post.fecha }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6 m6 l6 right-align">
+                                <div class="chip comentarios">99</div>
+                            </div>
+                            <div class="col s6 m6 l6 right-align">
+                                <i data-id="{{ post.id }}" class="material-icons md-48 favorito no-fav white">thumb_up</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
         {% endfor %}
     </div>
 </section>

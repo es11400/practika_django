@@ -3,6 +3,7 @@ from django.db import models
 
 
 from blogs.models import blogs
+from categorias.models import categorias
 
 VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
 
@@ -21,6 +22,7 @@ class post(models.Model):
     creado_el = models.DateTimeField(auto_now_add=True)
     modificado_el = models.DateTimeField(auto_now=True)
     visible = models.CharField(max_length=2, choices=VISIBILIDAD, default='SI')
+    cat = models.ManyToManyField(categorias)
 
     def __str__(self):
         return self.titulo

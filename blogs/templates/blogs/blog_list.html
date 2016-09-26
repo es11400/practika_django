@@ -8,8 +8,11 @@
                     <article class="entrada">
                         <div class="card hoverable">
                             <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4" data-id="{{post.id}}"> {{ post.titulo }}<i class="material-icons right">more_vert</i></span>
-                                <p class="justify-align">{{ post.texto_corto}}</p>
+                                <a href="#">
+                                    <span class="card-title activator grey-text text-darken-4" data-id="{{blog.id}}"> {{ blog.nombre }}<i class="material-icons right">more_vert</i></span>
+                                </a>
+                                <p class="left-align">{{ blog.usuario}}</p>
+                                <p class="right-align">Creado el {{ blog.creado_el}}</p>
                             </div>
                         </div>
                     </article>
@@ -17,6 +20,10 @@
             </div>
         </section>
     {% else %}
-        {% include "entradas/includes/join_us.html" %}
+        <section>
+            <div class="container center-align">
+                <h5>¡No existen Blogs! ¿Quieres ser el Primero?</h5>
+            </div>
+        </section>
     {% endif %}
 {% endblock %}

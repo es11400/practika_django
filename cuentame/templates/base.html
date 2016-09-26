@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
   <html>
     <head>
@@ -6,6 +6,7 @@
       <title>Cuentame</title>
         {% block stylesheets %}
             <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         {% endblock %}
       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
     </head>
@@ -27,7 +28,9 @@
       {% include "includes/modals.html" %}
 
       {% block javascripts %}
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
       {% endblock %}
     </body>
   </html>

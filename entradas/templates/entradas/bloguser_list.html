@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block section %}
+    {% if postuser_list|length > 0 %}
+        {% include "entradas/includes/post_loop.html" with post_list=postuser_list %}
+    {% else %}
+        {% include "entradas/includes/join_us.html" %}
+    {% endif %}
+{% endblock %}

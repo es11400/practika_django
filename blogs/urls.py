@@ -1,11 +1,13 @@
 from django.conf.urls import url
 
-from blogs.views import HomeView
+from blogs.views import HomeView, BlogListView, BlogUserListView, BlogCatListView
 
 urlpatterns = [
     # url(r'^create$', PhotoCreationView.as_view(), name='photos_create'),
-    # url(r'^photos/$', PhotoListView.as_view(), name='photos_my_photos'),
-    # url(r'^photos/(?P<pk>[0-9]+)$', PhotoDetailView.as_view(), name='photos_detail'),
+    url(r'^blogs$', BlogListView.as_view(), name='blogs_list'),
+    url(r'^blogs/([\w-]+)/$', BlogUserListView.as_view(), name='blogsuser_list'),
+    url(r'^blogs/cat/(?P<pk>[\w-]+)/$', BlogCatListView.as_view(), name='blogscat_list'),
     url(r'^$', HomeView.as_view(), name='blogs_home'),
+
 ]
 

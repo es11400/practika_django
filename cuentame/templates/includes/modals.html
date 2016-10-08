@@ -2,9 +2,15 @@
     <div id="modalAcceso" class="modal bottom-sheet">
       <div class="modal-content">
         <h4>Acceso</h4>
-        <p>Aquí mostraremos el login de usuarios</p>
+        {{ error }}
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {{ login_form.as_p }}
+          <button type="submit">Login</button>
+        </form>
       </div>
     </div>
+
   <!-- Modal Registro de Usuarios (de momento de pega ) -->
     <div id="modalRegistro" class="modal bottom-sheet">
       <div class="modal-content">

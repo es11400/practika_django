@@ -7,8 +7,13 @@
               <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><a id="accesoInicio" href="{% url 'blogs_home' %}">Inicio</a></li>
-                <li><a id="Acceso" href="#">Acceso</a></li>
-                <li><a id="Registro">Registro</a></li>
+                {% if user.is_authenticated %}
+                  <li><a id="NuevoPost" href="#">Nuevo Post</a></li>
+                  <li><a href="{% url 'users_logout' %}">Salir</a></li>
+                {% else %}
+                  <li><a id="Acceso" href="#">Acceso</a></li>
+                  <li><a id="Registro">Registro</a></li>
+                {% endif %}
                 <li><a id="blogs" href="{% url 'blogs_list' %}">Blogs</a></li>
                 {% if categoria_list|length > 0 %}
                   <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Categorías<i class="material-icons right">arrow_drop_down</i></a></li>

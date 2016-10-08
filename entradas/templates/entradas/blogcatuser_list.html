@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block section %}
+    {% if postcatuseregorias_list|length > 0 %}
+        {% include "entradas/includes/post_loop.html" with post_list=postcatuseregorias_list %}
+    {% else %}
+        {% include "entradas/includes/join_us.html" %}
+    {% endif %}
+{% endblock %}

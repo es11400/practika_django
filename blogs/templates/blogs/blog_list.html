@@ -8,11 +8,26 @@
                     <article class="entrada">
                         <div class="card hoverable">
                             <div class="card-content">
-                                <a href="#">
-                                    <span class="card-title activator grey-text text-darken-4" data-id="{{blog.id}}"> {{ blog.nombre }}<i class="material-icons right">more_vert</i></span>
-                                </a>
-                                <p class="left-align">{{ blog.usuario}}</p>
-                                <p class="right-align">Creado el {{ blog.creado_el}}</p>
+                                <div class="row">
+                                    <div class="col s12 m12 l12 center-align">
+                                        <a href="{% url 'blogspost_list' blogId=blog.id %}">
+                                            <span class="card-title activator grey-text text-darken-4"> {{ blog.nombre }}<i class="material-icons right">more_vert</i></span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col s6 m6 l6 left-align">
+                                        <a class="left-align" href="{% url 'blogsuser_list' username=blog.usuario %}">
+                                            <div class="chip">
+                                                <img src="/static/img/avatar.png" alt="Autor">{{ blog.usuario }}
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s6 m6 l6 right-align">
+                                        <p class="fecha-articulo">{{ blog.creado_el }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </article>

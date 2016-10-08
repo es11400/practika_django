@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block section %}
+<section>
+    <div class="container center-align">
+        <h4>Las entradas de {{ usuario.first_name }} {{ usuario.last_name }}</h4>
+    </div>
+</section>
     {% if postuser_list|length > 0 %}
         {% include "entradas/includes/post_loop.html" with post_list=postuser_list %}
     {% else %}

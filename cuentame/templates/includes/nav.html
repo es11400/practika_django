@@ -9,11 +9,12 @@
                 <li><a id="accesoInicio" href="{% url 'blogs_home' %}">Inicio</a></li>
                 <li><a id="Acceso" href="#">Acceso</a></li>
                 <li><a id="Registro">Registro</a></li>
+                <li><a id="blogs" href="{% url 'blogs_list' %}">Blogs</a></li>
                 {% if categoria_list|length > 0 %}
                   <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Categorías<i class="material-icons right">arrow_drop_down</i></a></li>
                     <ul id='dropdown2' class='dropdown-content'>
                       {% for categoria in categoria_list%}
-                        <li><a href="blogs/cat/{{categoria.nombre}}">{{categoria.nombre}}</a></li>
+                        <li><a href="{% url 'blogscat_list' nombre=categoria.nombre %}">{{categoria.nombre}}</a></li>
                       {% endfor %}
                     </ul>
                 {% endif %}

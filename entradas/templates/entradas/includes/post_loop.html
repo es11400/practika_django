@@ -4,19 +4,20 @@
             <article class="entrada">
                 <div class="card hoverable">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="uploads/{{ post.imagen }}" alt="{{ post.titulo }}" title="{{ post.blog.nombre }}">
+                        <img class="activator" src="/uploads/{{ post.imagen }}" alt="{{ post.titulo }}" title="{{ post.blog.nombre }}">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4" data-id="{{post.id}}"> {{ post.titulo }}<i class="material-icons right">more_vert</i></span>
+                        <a href="{% url 'blogsuser_post' username=post.blog.usuario postId=post.id %}"> <span class="card-title activator grey-text text-darken-4" data-id="{{post.id}}"> {{ post.titulo }}</span></a>
                         <p class="justify-align">{{ post.texto_corto}}</p>
                     </div>
                     <div class="card-action">
                         <div class="row">
                             <div class="col s12 m12 l12 left-align">
                                 <div class="chip">
-                                    {{ post.blog.usuario }}
+                                    <a class="left-align" href="{% url 'blogsuser_list' username=post.blog.usuario %}">{{ post.blog.usuario }}</a>
                                 </div>
                                 <p class="fecha-articulo">{{ post.fecha }}</p>
+                                <p class="fecha-articulo">{{ post.cat.categorias }}</p>
                             </div>
                         </div>
                         <div class="row">

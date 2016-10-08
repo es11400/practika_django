@@ -12,19 +12,27 @@
                     </div>
                     <div class="card-action">
                         <div class="row">
-                            <div class="col s12 m12 l12 left-align">
-                                <div class="chip">
-                                    <a class="left-align" href="{% url 'blogsuser_list' username=post.blog.usuario %}">{{ post.blog.usuario }}</a>
-                                </div>
+                            <div class="col s6 m6 l6 left-align">
+                                <a class="left-align" href="{% url 'blogsuser_list' username=post.blog.usuario %}">
+                                    <div class="chip">
+                                        <img src="/static/img/avatar.png" alt="Autor">{{ post.blog.usuario }}
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col s6 m6 l6 right-align">
                                 <p class="fecha-articulo">{{ post.fecha }}</p>
-                                <p class="fecha-articulo">{{ post.cat.categorias }}</p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col s6 m6 l6 right-align">
+                            <div class="col s4 m4 l4 left-align">
+                                {% for categoria in post.cat.all %}
+                                    <a href="{% url 'blogscat_list' nombre=categoria.nombre %}"><div class="chip comentarios">{{ categoria.nombre }}</div></a>
+                                {% endfor %}
+                            </div>
+                            <div class="col s4 m4 l4 center-align">
                                 <div class="chip comentarios">99</div>
                             </div>
-                            <div class="col s6 m6 l6 right-align">
+                            <div class="col s4 m4 l4 right-align">
                                 <i data-id="{{ post.id }}" class="material-icons md-48 favorito no-fav white">thumb_up</i>
                             </div>
                         </div>

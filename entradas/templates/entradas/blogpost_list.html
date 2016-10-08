@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block section %}
+<section>
+    <div class="container center-align">
+        <h4>Las entradas de {{ blog.nombre }} </h4>
+    </div>
+</section>
+    {% if postblog_list|length > 0 %}
+        {% include "entradas/includes/post_loop.html" with post_list=postblog_list %}
+    {% else %}
+        {% include "entradas/includes/join_us.html" %}
+    {% endif %}
+{% endblock %}

@@ -17,7 +17,7 @@ class post(models.Model):
     titulo = models.CharField(max_length=150, blank=True)
     texto_corto = models.CharField(max_length=255)
     texto_largo = models.TextField(null=True, blank=True)
-    fecha = models.DateTimeField(auto_now=True)
+    fecha = models.DateTimeField()
     imagen = models.ImageField(upload_to=media_url, null=True, blank=True)
     creado_el = models.DateTimeField(auto_now_add=True)
     modificado_el = models.DateTimeField(auto_now=True)

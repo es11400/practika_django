@@ -3,18 +3,21 @@
       <div class="modal-content">
         <h4>Acceso</h4>
         {{ error }}
-        <form method="post" novalidate>
-          {% csrf_token %}
+        <form action="#" method="post" novalidate>{% csrf_token %}
           {{ login_form.as_p }}
-          <button type="submit">Login</button>
+          <input name="login" type="submit" value="Login"/>
         </form>
       </div>
     </div>
 
   <!-- Modal Registro de Usuarios (de momento de pega ) -->
-    <div id="modalRegistro" class="modal bottom-sheet">
+    <div id="modalRegistro" class="modal">
       <div class="modal-content">
         <h4>Registro</h4>
-        <p>Aquí mostraremos el registro de usuarios</p>
+        {{ error }}
+        <form action="#" method="post" novalidate>{% csrf_token %}
+          {{ signup_form.as_p }}
+          <input name="registro" type="submit" value="Registrarse"/>
+        </form>
       </div>
     </div>

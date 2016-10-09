@@ -13,13 +13,16 @@
 
     <body>
       {% include "includes/nav.html" %}
-      <section>
-          <div class="container">
-              <h1>Cuentame</h1>
-              <h5 class="flow-text">¿Tienes una historia? Pues cuéntanosla.</h5>
-              <h5 class="flow-text">¿No tienes nada que contar? Pues valora la de los demás.</h5>
-          </div>
-      </section>
+      {% block header %}
+          <section>
+              <div class="container">
+                  <h1>Cuentame</h1>
+                  <h5 class="flow-text">¿Tienes una historia? Pues cuéntanosla.</h5>
+                  <h5 class="flow-text">¿No tienes nada que contar? Pues valora la de los demás.</h5>
+              </div>
+          </section>
+      {% endblock %}
+
       {% block section %}
 
       {% endblock %}

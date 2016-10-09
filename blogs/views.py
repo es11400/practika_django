@@ -1,18 +1,23 @@
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import ListView, DetailView
 from rest_framework.generics import get_object_or_404
 
+from blogs.includes import Inc
 from blogs.models import blogs, User
 from categorias.models import categorias
 from cuentame.settings import VISIBLE_SI
 from entradas.models import post
-from users.forms import LoginForm
+from users.forms import LoginForm, SignUpForm
+from entradas.forms import CreatePostForm
 
-class HomeView(View):
+
+class HomeView(Inc, View):
 
     def get(self, request):
         """
@@ -25,32 +30,12 @@ class HomeView(View):
         cat = categorias.objects.filter(visible=VISIBLE_SI).order_by('nombre')
         error_message = ""
         login_form = LoginForm()
-
-        context = {'post_list': posts, 'categoria_list': cat, 'error': error_message, 'login_form': login_form}
+        signup_form = SignUpForm()
+        context = {'post_list': posts, 'categoria_list': cat, 'error': error_message, 'login_form': login_form, 'signup_form': signup_form}
         return render(request, 'entradas/inicio.html', context)
 
     def post(self, request):
-        """
-        Gestiona el login de un usuario
-        :param request: objeto HttpRequest con los datos de la petición
-        :return: objeto HttpResponse con los datos de la respuesta
-        """
-        error_message = ""
-        login_form = LoginForm(request.POST)
-        if login_form.is_valid():
-            username = login_form.cleaned_data.get('username')
-            password = login_form.cleaned_data.get('pwd')
-            user = authenticate(username=username, password=password)
-            if user is None:
-                error_message = "Usuario o contraseña incorrecto"
-            else:
-                if user.is_active:
-                    django_login(request, user)
-                    return redirect(request.GET.get('next', '/'))
-                else:
-                    error_message = "Cuenta de usuario inactiva"
-        context = {'error': error_message, 'form': login_form}
-        return render(request, 'users/login.html', context)
+        return Inc.formularios(self, request)
 
 class BlogListView(ListView):
     """Renderizamos la lista de Blogs"""
@@ -62,16 +47,21 @@ class BlogListView(ListView):
         """Añadimos la categorias al contexto"""
         error_message = ""
         login_form = LoginForm()
+        signup_form = SignUpForm()
         context = super(BlogListView, self).get_context_data(**kwargs)
         context['categoria_list'] = categorias.objects.all()
         context['error'] = error_message
         context['login_form'] = login_form
+        context['signup_form'] = signup_form
         return context
 
     def get(self, request):
         """Añadimos los blogs registrados al contexto"""
         result = super().get(request)
         return result
+
+    def post(self, request):
+        return Inc.formularios(self, request)
 
 class BlogPostListView(ListView):
     """Renderizamos los post de un blog"""
@@ -83,17 +73,22 @@ class BlogPostListView(ListView):
         """Añadimos la categorias al contexto"""
         error_message = ""
         login_form = LoginForm()
+        signup_form = SignUpForm()
         context = super(BlogPostListView, self).get_context_data(**kwargs)
         context['categoria_list'] = categorias.objects.all()
         context['blog'] = get_object_or_404(blogs, id=self.kwargs.get('blogId', None))
         context['error'] = error_message
         context['login_form'] = login_form
+        context['signup_form'] = signup_form
         return context
 
     def get_queryset(self):
         """Añadimos los post de un blog pasado por parametro blogId"""
         self.blog = get_object_or_404(blogs, id=self.kwargs.get('blogId', None))
         return post.objects.filter(visible=VISIBLE_SI, blog=self.blog).order_by('-creado_el')
+
+    def post(self, request):
+        return Inc.formularios(self, request)
 
 class BlogUserListView(ListView):
     """Renderizamos los post de un usuario"""
@@ -105,12 +100,17 @@ class BlogUserListView(ListView):
         """Añadimos la categorias al contexto"""
         error_message = ""
         login_form = LoginForm()
+        signup_form = SignUpForm()
         context = super(BlogUserListView, self).get_context_data(**kwargs)
         context['categoria_list'] = categorias.objects.all()
         context['usuario'] = get_object_or_404(User, username=self.kwargs.get('username', None))
         context['error'] = error_message
         context['login_form'] = login_form
+        context['signup_form'] = signup_form
         return context
+
+    def post(self, request):
+        return Inc.formularios(self, request)
 
     def get_queryset(self):
         """Añadimos los post de un un usuario pasado por parametro username"""
@@ -127,11 +127,16 @@ class BlogCatListView(ListView):
         """Añadimos la categorias al contexto"""
         error_message = ""
         login_form = LoginForm()
+        signup_form = SignUpForm()
         context = super(BlogCatListView, self).get_context_data(**kwargs)
         context['categoria_list'] = categorias.objects.all()
         context['error'] = error_message
         context['login_form'] = login_form
+        context['signup_form'] = signup_form
         return context
+
+    def post(self, request):
+        return Inc.formularios(self, request)
 
     def get_queryset(self):
         """Añadimos al contexto los posts de una determinada categoria, tomando el parametro nombre"""
@@ -148,11 +153,16 @@ class BlogCatUserListView(ListView):
         """Añadimos la categorias al contexto"""
         error_message = ""
         login_form = LoginForm()
+        signup_form = SignUpForm()
         context = super(BlogCatUserListView, self).get_context_data(**kwargs)
         context['categoria_list'] = categorias.objects.all()
         context['error'] = error_message
         context['login_form'] = login_form
+        context['signup_form'] = signup_form
         return context
+
+    def post(self, request):
+        return Inc.formularios(self, request)
 
     def get_queryset(self):
         """Añadimos al contexto los posts de un usuario y una categoria, tomando el parametro nombre de la categoria y username para el usuario"""
@@ -174,6 +184,7 @@ class BlogUserDetailView(View):
         """
         error_message = ""
         login_form = LoginForm()
+        signup_form = SignUpForm()
         possible_post = post.objects.filter(id=postId)
 
         if len(possible_post) == 0:
@@ -182,5 +193,8 @@ class BlogUserDetailView(View):
             return HttpResponse("Múltiples opciones", status=300)
 
         post_select = possible_post[0]
-        context = {'post': post_select, 'error': error_message, 'login_form': login_form}
+        context = {'post': post_select, 'error': error_message, 'login_form': login_form, 'signup_form': signup_form}
         return render(request, 'entradas/bloguser_post.html', context)
+
+    def post(self, request):
+        return Inc.formularios(self, request)

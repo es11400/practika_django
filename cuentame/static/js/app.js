@@ -10,19 +10,6 @@ $(window).scroll(function(){
 	} else {
 		$('.subir').fadeOut();
 	}
-
-	if($('.ver-comentarios').css('display') === 'none' ) {
-
-		var hT = $('.progress').offset().top,
-		hH = $('.progress').outerHeight(),
-		wH = $(window).height(),
-		wS = $(this).scrollTop();
-   		if (wS > (hT+hH-wH)){
-    		var EntradaId = $('.favorito').data("id");
-			$('.ver-comentarios').fadeIn(3500);
-			cargarComentarios.cargar(EntradaId);
-   		}
-	}
 });
 
 $('.subir').click(function(){

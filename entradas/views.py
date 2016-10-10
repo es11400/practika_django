@@ -30,7 +30,7 @@ class NewPostView(View):
         """
         message = None
         # photo_with_user = Photo(owner=request.user)
-        new_post_form = CreatePostForm(request.POST)
+        new_post_form = CreatePostForm(request.POST, request.FILES)
         if new_post_form.is_valid():
             new_photo = new_post_form.save()
             new_post_form = CreatePostForm()

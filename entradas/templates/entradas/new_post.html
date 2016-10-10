@@ -8,10 +8,13 @@
             <h1>Crear entrada</h1>
                 {% if message %} <p>{{ message|safe }}</p> {% endif %}
 
-            <form method="post" novalidate>
+            <form method="post" enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
                 {{ new_post_form.as_p }}
-                <button type="submit">Guardar</button>
+                <div class="form-actions">
+                    <button type="submit">Guardar entrada</button>
+                </div>
+
             </form>
         </div>
     </section>

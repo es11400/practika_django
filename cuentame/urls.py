@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'', include(users_urls)),
     url(r'', include(blogs_urls)),
     url(r'', include(entradas_urls)),
+
 ]
 
 if settings.DEBUG:

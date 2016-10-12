@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
@@ -11,7 +12,7 @@ from rest_framework.generics import get_object_or_404
 from blogs.includes import Inc
 from blogs.models import blogs, User
 from categorias.models import categorias
-from cuentame.settings import VISIBLE_SI
+from cuentame.settings import VISIBLE_SI, POSTxPAGINAS
 from entradas.models import post
 from users.forms import LoginForm, SignUpForm
 from entradas.forms import CreatePostForm
@@ -27,11 +28,20 @@ class HomeView(Inc, View):
         """
         # recupera todas los post visibles de la base de datos
         posts = post.objects.filter(visible=VISIBLE_SI).order_by('-creado_el')
+        paginator = Paginator(posts, POSTxPAGINAS)
+        page = request.GET.get('page')
+        try:
+            posts_pag = paginator.page(page)
+        except PageNotAnInteger:
+            posts_pag = paginator.page(1)
+        except EmptyPage:
+            posts_pag = paginator.page(paginator.num_pages)
+
         cat = categorias.objects.filter(visible=VISIBLE_SI).order_by('nombre')
         error_message = ""
         login_form = LoginForm()
         signup_form = SignUpForm()
-        context = {'post_list': posts, 'categoria_list': cat, 'error': error_message, 'login_form': login_form, 'signup_form': signup_form}
+        context = {'post_list': posts_pag, 'categoria_list': cat, 'error': error_message, 'login_form': login_form, 'signup_form': signup_form}
         return render(request, 'entradas/inicio.html', context)
 
     def post(self, request):
@@ -42,6 +52,7 @@ class BlogListView(ListView):
     model = blogs
     context_object_name = 'blog_list'
     template_name = 'blogs/blog_list.html'
+    paginate_by = POSTxPAGINAS
 
     def get_context_data(self, **kwargs):
         """Añadimos la categorias al contexto"""
@@ -68,6 +79,7 @@ class BlogPostListView(ListView):
     model = post
     context_object_name = 'postblog_list'
     template_name = 'entradas/blogpost_list.html'
+    paginate_by = POSTxPAGINAS
 
     def get_context_data(self, **kwargs):
         """Añadimos la categorias al contexto"""
@@ -95,6 +107,7 @@ class BlogUserListView(ListView):
     model = post
     context_object_name = 'postuser_list'
     template_name = 'entradas/bloguser_list.html'
+    paginate_by = POSTxPAGINAS
 
     def get_context_data(self, **kwargs):
         """Añadimos la categorias al contexto"""
@@ -122,6 +135,7 @@ class BlogCatListView(ListView):
     model = post
     context_object_name = 'postcategorias_list'
     template_name = 'entradas/blogcat_list.html'
+    paginate_by = POSTxPAGINAS
 
     def get_context_data(self, **kwargs):
         """Añadimos la categorias al contexto"""
@@ -148,6 +162,7 @@ class BlogCatUserListView(ListView):
     model = post
     context_object_name = 'postcatuseregorias_list'
     template_name = 'entradas/blogcatuser_list.html'
+    paginate_by = POSTxPAGINAS
 
     def get_context_data(self, **kwargs):
         """Añadimos la categorias al contexto"""
@@ -177,7 +192,7 @@ class BlogUserDetailView(View):
 
     def get(self, request, username, postId):
         """
-        Renderiza el detalle de una imagen
+        Renderiza el detalle de un post
         :param request: objeto HttpRequest con los datos de la petición
         :param pk: clave primaria de la foto a recuperar
         :return: objeto HttpResponse con los datos de la respuesta
@@ -188,7 +203,7 @@ class BlogUserDetailView(View):
         possible_post = post.objects.filter(id=postId)
 
         if len(possible_post) == 0:
-            return HttpResponseNotFound("La imagen que buscas no existe")
+            return HttpResponseNotFound("El post que buscas no existe")
         elif len(possible_post) > 1:
             return HttpResponse("Múltiples opciones", status=300)
 

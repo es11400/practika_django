@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect, render
 
-from cuentame.settings import VISIBLE_SI
+from cuentame.settings import VISIBLE_SI, POSTxPAGINAS
 from entradas.models import post
 from categorias.models import categorias
 from users.forms import LoginForm, SignUpForm
@@ -16,6 +17,14 @@ class Inc():
         :return: objeto HttpResponse con los datos de la respuesta
         """
         posts = post.objects.filter(visible=VISIBLE_SI).order_by('-creado_el')
+        paginator = Paginator(posts, POSTxPAGINAS)
+        page = request.GET.get('page')
+        try:
+            posts_pag = paginator.page(page)
+        except PageNotAnInteger:
+            posts_pag = paginator.page(1)
+        except EmptyPage:
+            posts_pag = paginator.page(paginator.num_pages)
         cat = categorias.objects.filter(visible=VISIBLE_SI).order_by('nombre')
         error_message = ""
         login_form = LoginForm(request.POST)
@@ -28,7 +37,7 @@ class Inc():
                 user = authenticate(username=username, password=password)
                 if user is None:
                     error_message = "Usuario o contraseña incorrecto"
-                    context = {'post_list': posts, 'categoria_list': cat, 'error': error_message,
+                    context = {'post_list': posts_pag, 'categoria_list': cat, 'error': error_message,
                                'login_form': login_form}
                     return render(request, 'entradas/inicio.html', context)
                 else:
@@ -37,12 +46,12 @@ class Inc():
                         return redirect(request.GET.get('next', '/'))
                     else:
                         error_message = "Cuenta de usuario inactiva"
-                        context = {'post_list': posts, 'categoria_list': cat, 'error': error_message,
+                        context = {'post_list': posts_pag, 'categoria_list': cat, 'error': error_message,
                                    'login_form': login_form}
                         return render(request, 'entradas/inicio.html', context)
 
             elif not login_form.is_valid():
-                context = {'post_list': posts, 'categoria_list': cat, 'error': error_message, 'login_form': login_form}
+                context = {'post_list': posts_pag, 'categoria_list': cat, 'error': error_message, 'login_form': login_form}
                 return render(request, 'entradas/inicio.html', context)
 
         if 'registro' in request.POST:
@@ -56,11 +65,11 @@ class Inc():
                 )
                 django_login(request, user)
                 signup_form = SignUpForm()
-                context = {'post_list': posts, 'categoria_list': cat, 'error': error_message, 'login_form': login_form,
+                context = {'post_list': posts_pag, 'categoria_list': cat, 'error': error_message, 'login_form': login_form,
                            'signup_form': signup_form}
                 return render(request, 'entradas/inicio.html', context)
 
             elif not signup_form.is_valid():
-                context = {'post_list': posts, 'categoria_list': cat, 'error': error_message, 'login_form': login_form,
+                context = {'post_list': posts_pag, 'categoria_list': cat, 'error': error_message, 'login_form': login_form,
                            'signup_form': signup_form}
                 return render(request, 'entradas/inicio.html', context)

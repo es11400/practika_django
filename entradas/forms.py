@@ -32,7 +32,7 @@ class CreatePostForm(ModelForm):
             'titulo': TextInput(),
             'texto_corto': TextInput(),
             'texto_largo': Textarea(attrs={'class': 'materialize-textarea', 'cols': '80', 'rows': '16'}),
-            'fecha': DateTimeInput(attrs={'class': 'datepickerw'}),
+            'fecha': DateTimeInput(attrs={'class': 'datepicker'}),
             'imagen': FileInput(),
             'visible': Select(attrs={'label': '¿Visible?', 'class': 'input-field'}),
             'cat': SelectMultiple(attrs={'label': 'Categorías', 'class': 'multiple'}),

@@ -6,4 +6,27 @@
     {% else %}
         {% include "entradas/includes/join_us.html" %}
     {% endif %}
+<div class="center-align">
+    <ul class="pagination">
+        {% if post_list.has_previous %}
+          <li class="waves-effect"><a href="?page={{ post_list.obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+        {% else %}
+          <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
+        {% endif %}
+
+        {% for num in post_list.paginator.page_range %}
+          {% ifequal num post_list.number %}
+            <li class="active"><a href="#">{{ num }}</a></li>
+          {% else %}
+            <li class="waves-effect"><a href="?page={{ num }}">{{ num }}</a></li>
+          {% endifequal %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="waves-effect"><a href="?page={{ post_list.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+        {% else %}
+          <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+        {% endif %}
+    </ul>
+</div>
 {% endblock %}

@@ -153,3 +153,6 @@ VISIBILIDAD = (
     (VISIBLE_NO, 'NO')
 )
 
+LOGIN_URL = '/'
+
+POSTxPAGINAS = 2

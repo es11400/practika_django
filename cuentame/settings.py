@@ -156,6 +156,8 @@ VISIBILIDAD = (
 
 LOGIN_URL = '/'
 
+API_URL = 'http://127.0.0.1:8000/api/1.0'
+
 POSTxPAGINAS = 5
 
 REST_FRAMEWORK = {

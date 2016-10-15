@@ -1,3 +1,5 @@
+from django.core.serializers import json
+
 from cuentame.settings import API_URL, MEDIA_ROOT
 from entradas.models import post
 from rest_framework import serializers
@@ -22,6 +24,7 @@ class PostSerializer(serializers.ModelSerializer):
     def url_imagen(self, foo):
         return '%s%s' % (MEDIA_ROOT, foo.imagen)
 
+
     class Meta:
         model = post
         fields = ("id", "blog", "nombreBlog", "idUsuario", "nombreUsuario", "fecha", "cat", "titulo", "texto_corto", "texto_largo", "urlImagen", "visible", "creado_el", "modificado_el",)
@@ -36,4 +39,4 @@ class PostListSerializer(PostSerializer):
 
 
     class Meta(PostSerializer.Meta):
-        fields = ("id", "blog", "nombreUsuario", "titulo", "texto_corto", "urlImagen", "fecha", "verUrl",)
+        fields = ("id", "blog", "cat", "nombreUsuario", "titulo", "texto_corto", "urlImagen", "fecha", "verUrl",)

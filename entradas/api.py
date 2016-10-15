@@ -13,9 +13,12 @@ from entradas.serializers import PostSerializer, PostListSerializer
 
 class PostModelViewSet(ModelViewSet):
     permission_classes = (PostPermission,)
-    search_fields = ('titulo', "texto_corto", "texto_largo")
-    order_fields = ('titulo', "fecha")
+    search_fields = ('titulo', "texto_corto", "texto_largo",)
+    order_fields = ('titulo', "fecha",)
     filter_backends = (filters.SearchFilter, filters.OrderingFilter,)
+    # filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('cat',)
+
 
     def get_queryset(self):
         if self.request.user.is_superuser:

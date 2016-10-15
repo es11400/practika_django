@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'entradas',
     'categorias',
     'users',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -126,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = 'uploads/'
-MEDIA_ROOT = 'uploads/'
+MEDIA_ROOT = 'http://127.0.0.1:8000/uploads/'
 
 LOGGING = {
     'version': 1,
@@ -155,4 +156,12 @@ VISIBILIDAD = (
 
 LOGIN_URL = '/'
 
-POSTxPAGINAS = 2
+API_URL = 'http://127.0.0.1:8000/api/1.0'
+
+POSTxPAGINAS = 5
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+    # 'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+}

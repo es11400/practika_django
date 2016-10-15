@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect, render
+from django.utils.datetime_safe import datetime
 
 from cuentame.settings import VISIBLE_SI, POSTxPAGINAS
 from entradas.models import post
@@ -16,7 +17,7 @@ class Inc():
         :param request: objeto HttpRequest con los datos de la petición
         :return: objeto HttpResponse con los datos de la respuesta
         """
-        posts = post.objects.filter(visible=VISIBLE_SI).order_by('-creado_el')
+        posts = post.objects.filter(visible=VISIBLE_SI, fecha__lte=datetime.now()).order_by('-fecha')
         paginator = Paginator(posts, POSTxPAGINAS)
         page = request.GET.get('page')
         try:

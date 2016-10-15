@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'categorias',
     'users',
     'rest_framework',
+    'imagenes',
 ]
 
 MIDDLEWARE = [

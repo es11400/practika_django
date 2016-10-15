@@ -20,6 +20,7 @@ from django.contrib import admin
 from blogs import urls as blogs_urls
 from users import urls as users_urls
 from entradas import urls as entradas_urls
+from imagenes import urls as imagenes_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -27,6 +28,7 @@ urlpatterns = [
     url(r'', include(users_urls)),
     url(r'', include(blogs_urls)),
     url(r'', include(entradas_urls)),
+    url(r'', include(imagenes_urls)),
 
 ]
 

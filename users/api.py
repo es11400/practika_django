@@ -21,10 +21,8 @@ class UserModelViewSet(ModelViewSet):
 
     def perform_create(self, UserSerializer):
         password = make_password(self.request.data['password'])
-
         UserSerializer.save(password=password)
 
     def perform_update(self, UserSerializer):
         password = make_password(self.request.data['password'])
-
         UserSerializer.save(password=password)

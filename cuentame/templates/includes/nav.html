@@ -6,6 +6,14 @@
               <a href="{% url 'blogs_home' %}" class="brand-logo">Cuentame</a>
               <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
+                {% if user.is_authenticated %}
+                  <li>
+                    <div class="chip">
+                      <img src="/static/img/avatar.png" alt="Autor">{{ request.user.first_name }} {{ request.user.last_name }}
+                    </div>
+                  </li>
+                {% endif %}
+
                 <li><a id="accesoInicio" href="{% url 'blogs_home' %}">Inicio</a></li>
                 {% if user.is_authenticated %}
                   <li><a id="NuevoPost" href="{% url 'new_post' %}">Nuevo Post</a></li>
@@ -31,8 +39,16 @@
                   <div class="userView">
                     <img class="background" src="{% static 'img/campina.jpg' %}">
                     <a href="#"><img class="circle" src="{% static 'img/avatar.png' %}"></a>
-                    <a href="#"><span class="white-text nombre">Carlos Castaño</span></a>
-                    <a href="#"><span class="white-text correo">11400.es@gmail.com</span></a>
+                    <a href="#"><span class="white-text nombre">
+                      {% if user.is_authenticated %}
+                        {{ request.user.first_name }} {{ request.user.last_name }}
+                      {% endif %}
+                    </span></a>
+                    <a href="#"><span class="white-text correo">
+                      {% if user.is_authenticated %}
+                        {{ request.user.email }}
+                      {% endif %}
+                    </span></a>
                   </div>
                 </li>
                 <li>

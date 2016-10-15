@@ -127,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = 'uploads/'
-MEDIA_ROOT = 'uploads/'
+MEDIA_ROOT = 'http://127.0.0.1:8000/uploads/'
 
 LOGGING = {
     'version': 1,

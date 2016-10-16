@@ -1,8 +1,10 @@
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views import View
 
+from blogs.models import blogs
 from entradas.forms import CreatePostForm
 
 
@@ -16,6 +18,7 @@ class NewPostView(View):
         :return: objeto HttpResponse con los datos de la respuesta
         """
         message = None
+        CreatePostForm.base_fields['blog'] = forms.ModelChoiceField(queryset=blogs.objects.filter(usuario=request.user))
         new_post_form = CreatePostForm()
         context = {'new_post_form': new_post_form, 'message': message}
         return render(request, 'entradas/new_post.html', context)

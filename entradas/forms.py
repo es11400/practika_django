@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.forms.widgets import DateInput, FileInput, DateTimeInput
-from django.forms import ModelForm, ChoiceField
+from django.forms import ModelForm, ChoiceField, ModelChoiceField
 from django.forms.widgets import Select
 from django.forms.widgets import SelectMultiple
 from django.forms.widgets import TextInput
@@ -16,6 +16,7 @@ class CreatePostForm(ModelForm):
 
 
     class Meta:
+
         model = post
         fields = ['blog', 'titulo', 'texto_corto', 'texto_largo', 'fecha', 'imagen', 'visible', 'cat']
         labels = {
@@ -30,8 +31,7 @@ class CreatePostForm(ModelForm):
                 }
         exclude = ['creado_el', 'modificado_el']
         widgets = {
-            'blog': Select(),
-            'titulo': TextInput(),
+            'blog': Select,
             'texto_corto': TextInput(),
             'texto_largo': Textarea(attrs={'class': 'materialize-textarea', 'cols': '80', 'rows': '16'}),
             'fecha': DateTimeInput(attrs={'class': 'datepickers', 'placeholder': 'dd/mm/aaaa HH:MM:SS'}),

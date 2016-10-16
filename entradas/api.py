@@ -1,10 +1,7 @@
 from django.db.models import Q
 from django.utils.datetime_safe import datetime
 from rest_framework import filters
-from rest_framework import request
 from rest_framework.viewsets import ModelViewSet
-
-from blogs.models import blogs
 from cuentame.settings import VISIBLE_SI
 from entradas.models import post
 from entradas.permissions import PostPermission
@@ -15,9 +12,8 @@ class PostModelViewSet(ModelViewSet):
     permission_classes = (PostPermission,)
     search_fields = ('titulo', "texto_corto", "texto_largo",)
     order_fields = ('titulo', "fecha",)
-    filter_backends = (filters.SearchFilter, filters.OrderingFilter,)
-    # filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('cat',)
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter, filters.DjangoFilterBackend,)
+    filter_fields = ('cat__nombre',)
 
 
     def get_queryset(self):

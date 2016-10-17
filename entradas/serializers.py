@@ -1,5 +1,7 @@
 from django.core.serializers import json
+from rest_framework import validators
 
+from blogs.models import blogs
 from cuentame.settings import API_URL, MEDIA_ROOT
 from entradas.models import post
 from rest_framework import serializers
@@ -23,6 +25,11 @@ class PostSerializer(serializers.ModelSerializer):
 
     def url_imagen(self, foo):
         return '%s%s' % (MEDIA_ROOT, foo.imagen)
+
+    def validate_blog(self, foo):
+        if foo.usuario.id != self.context['request'].user.id:
+            raise serializers.ValidationError("Este blog no pertenece al usuario")
+        return foo
 
 
     class Meta:

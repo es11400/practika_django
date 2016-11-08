@@ -5,6 +5,7 @@ from django.forms.widgets import Select
 from django.forms.widgets import SelectMultiple
 from django.forms.widgets import TextInput
 from django.forms.widgets import Textarea
+from django.utils.translation import ugettext as _
 from rest_framework import request
 
 from blogs.models import blogs
@@ -20,14 +21,14 @@ class CreatePostForm(ModelForm):
         model = post
         fields = ['blog', 'titulo', 'texto_corto', 'texto_largo', 'fecha', 'imagen', 'visible', 'cat']
         labels = {
-                    'blog': 'Elija un Blog',
-                    'titulo': 'Título',
-                    'texto_corto': 'Texto descriptivo',
-                    'texto_largo': 'Texto completo',
-                    'fecha': 'Fecha de publicación',
-                    'imagen': 'Seleccione una imagen',
-                    'visible': '¿Visible?',
-                    'cat': 'Categorías',
+                    'blog': _('Elija un Blog'),
+                    'titulo': _('Título'),
+                    'texto_corto': _('Texto descriptivo'),
+                    'texto_largo': _('Texto completo'),
+                    'fecha': _('Fecha de publicación'),
+                    'imagen': _('Seleccione una imagen'),
+                    'visible': _('¿Visible?'),
+                    'cat': _('Categorías'),
                 }
         exclude = ['creado_el', 'modificado_el']
         widgets = {

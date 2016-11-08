@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-07 21:12+0100\n"
+"POT-Creation-Date: 2016-11-08 11:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: blogs/includes.py:41
+msgid "Usuario o contraseña incorrecto"
+msgstr "Incorret user o password"
+
+#: blogs/includes.py:50
+msgid "Cuenta de usuario inactiva"
+msgstr "User account is deactivated"
+
 #: blogs/templates/blogs/blog_list.html:40
 msgid "¡No existen Blogs! ¿Quieres ser el Primero?"
 msgstr "Blogs do not exist! Want to be the first?"
+
+#: blogs/views.py:205
+msgid "El post que buscas no existe"
+msgstr "This post not exist"
 
 #: cuentame/templates/base.html:21
 msgid "¿Tienes una historia? Pues cuéntanosla."
@@ -72,6 +84,7 @@ msgid "Hecho a mano por "
 msgstr "Handmade by"
 
 #: cuentame/templates/includes/modals.html:5
+#: cuentame/templates/includes/modals.html:9
 #: cuentame/templates/includes/nav.html:23
 #: cuentame/templates/includes/nav.html:75
 msgid "Acceso"
@@ -81,6 +94,10 @@ msgstr "Sig In"
 #: cuentame/templates/includes/nav.html:24
 #: cuentame/templates/includes/nav.html:76
 msgid "Registro"
+msgstr "Sig Up"
+
+#: cuentame/templates/includes/modals.html:21
+msgid "Registrarse"
 msgstr "Sig Up"
 
 #: cuentame/templates/includes/nav.html:18
@@ -103,9 +120,9 @@ msgid "Blogs"
 msgstr "Blogs"
 
 #: cuentame/templates/includes/nav.html:28
-#: cuentame/templates/includes/nav.html:80
+#: cuentame/templates/includes/nav.html:80 entradas/forms.py:31
 msgid "Categorías"
-msgstr "category"
+msgstr "Category"
 
 #: cuentame/templates/includes/nav.html:36
 msgid "Idioma"
@@ -118,6 +135,38 @@ msgstr "Spanish"
 #: cuentame/templates/includes/nav.html:39
 msgid "Inglés"
 msgstr "English"
+
+#: entradas/forms.py:24
+msgid "Elija un Blog"
+msgstr "Select Blog"
+
+#: entradas/forms.py:25
+msgid "Título"
+msgstr "Title"
+
+#: entradas/forms.py:26
+msgid "Texto descriptivo"
+msgstr "Short text"
+
+#: entradas/forms.py:27
+msgid "Texto completo"
+msgstr "Full text"
+
+#: entradas/forms.py:28
+msgid "Fecha de publicación"
+msgstr "Date"
+
+#: entradas/forms.py:29
+msgid "Seleccione una imagen"
+msgstr "Select a image"
+
+#: entradas/forms.py:30
+msgid "¿Visible?"
+msgstr "Visible?"
+
+#: entradas/serializers.py:32
+msgid "Este blog no pertenece al usuario"
+msgstr "This blog does not belong to the user"
 
 #: entradas/templates/entradas/blogpost_list.html:6
 #: entradas/templates/entradas/bloguser_list.html:6
@@ -139,3 +188,35 @@ msgstr "New post"
 #: entradas/templates/entradas/new_post.html:15
 msgid "Guardar entrada"
 msgstr "Save post"
+
+#: users/forms.py:8 users/forms.py:16
+msgid "Nombre de usuario"
+msgstr "Username"
+
+#: users/forms.py:9 users/forms.py:17
+msgid "Contraseña"
+msgstr "Password"
+
+#: users/forms.py:13
+msgid "Nombre"
+msgstr "FirstName"
+
+#: users/forms.py:14
+msgid "Apellidos"
+msgstr "UserName"
+
+#: users/forms.py:15
+msgid "Correo electrónico"
+msgstr "Email"
+
+#: users/forms.py:18
+msgid "Repetir Contraseña"
+msgstr "Repeat password"
+
+#: users/forms.py:25
+msgid "El usuario existe, pruebe otro."
+msgstr "User exists, try another"
+
+#: users/forms.py:30
+msgid "Las contraseñas deben coincidir"
+msgstr "Passwords must match"

@@ -1,32 +1,33 @@
+{% load i18n %}
 <section>
         <footer class="page-footer">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">Cuentame</h5>
-                <p class="grey-text text-lighten-4">Hola esta es la práctica para Python, Django y REST<br> del KeepCoding &copy; Web Development Master Bootcamp.</p>
+                <p class="grey-text text-lighten-4">{% trans "Hola esta es la práctica para Python, Django y REST<br> del KeepCoding &copy; Web Development Master Bootcamp." %}</p>
               </div>
               <div class="col l3 s6">
-                <h5 class="white-text">Enlaces</h5>
+                <h5 class="white-text">{% trans "Enlaces" %}</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Acceso/Registro</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Contacto</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">{% trans "Acceso/Registro" %}</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">{% trans "Contacto" %}</a></li>
                 </ul>
               </div>
               <div class="col l3 s6">
                 <h5 class="white-text">Categorías</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Categoría 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Categoría 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Categoría 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Categoría 4</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">{% trans "Categoría 1" %}</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">{% trans "Categoría 2" %}</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">{% trans "Categoría 3" %}</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">{% trans "Categoría 4" %}</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © Hecho a mano por <a class="grey-text text-lighten-4" href="http://www.11400.es">Carlos Castaño</a>
+            © {% trans "Hecho a mano por " %}<a class="grey-text text-lighten-4" href="http://www.11400.es">Carlos Castaño</a>
             <!-- <i id="subir" class="material-icons md-48 right">present_to_all</i> -->
             <a href="#" class="subir"></a>
             </div>

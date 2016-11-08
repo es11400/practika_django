@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block section %}
     {% if blog_list|length > 0 %}
         <section>
@@ -37,7 +37,7 @@
     {% else %}
         <section>
             <div class="container center-align">
-                <h5>¡No existen Blogs! ¿Quieres ser el Primero?</h5>
+                <h5>{% trans "¡No existen Blogs! ¿Quieres ser el Primero?" %}</h5>
             </div>
         </section>
     {% endif %}

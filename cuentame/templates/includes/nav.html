@@ -1,9 +1,10 @@
 {% load static %}
+{% load i18n %}
 <header>
         <div class="navbar-fixed">
           <nav>
             <div class="nav-wrapper">
-              <a href="{% url 'blogs_home' %}" class="brand-logo">Cuentame</a>
+              <a href="{% url 'blogs_home' %}" class="brand-logo">Cuentame Avanzado</a>
               <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 {% if user.is_authenticated %}
@@ -14,24 +15,29 @@
                   </li>
                 {% endif %}
 
-                <li><a id="accesoInicio" href="{% url 'blogs_home' %}">Inicio</a></li>
+                <li><a id="accesoInicio" href="{% url 'blogs_home' %}">{% trans "Inicio" %}</a></li>
                 {% if user.is_authenticated %}
-                  <li><a id="NuevoPost" href="{% url 'new_post' %}">Nuevo Post</a></li>
-                  <li><a href="{% url 'users_logout' %}">Salir</a></li>
+                  <li><a id="NuevoPost" href="{% url 'new_post' %}">{% trans "Nuevo Post" %}</a></li>
+                  <li><a href="{% url 'users_logout' %}">{% trans "Salir" %}</a></li>
                 {% else %}
-                  <li><a id="Acceso" href="#">Acceso</a></li>
-                  <li><a id="Registro">Registro</a></li>
+                  <li><a id="Acceso" href="#">{% trans "Acceso" %}</a></li>
+                  <li><a id="Registro">{% trans "Registro" %}</a></li>
                 {% endif %}
-                <li><a id="blogs" href="{% url 'blogs_list' %}">Blogs</a></li>
+                <li><a id="blogs" href="{% url 'blogs_list' %}">{% trans "Blogs" %}</a></li>
                 {% if categoria_list|length > 0 %}
-                  <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Categorías<i class="material-icons right">arrow_drop_down</i></a></li>
+                  <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{% trans "Categorías" %}<i class="material-icons right">arrow_drop_down</i></a></li>
                     <ul id='dropdown2' class='dropdown-content'>
                       {% for categoria in categoria_list%}
                         <li><a href="{% url 'blogscat_list' nombre=categoria.nombre %}">{{categoria.nombre}}</a></li>
                       {% endfor %}
                     </ul>
                 {% endif %}
-                  <li><a href="#">Contacto</a></li>
+                  <li><a href="#">{% trans "Contacto" %}</a></li>
+                  <li><a class="dropdown-button" href="#!" data-activates="dropdownIdioma">{% trans "Idioma" %}<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <ul id='dropdownIdioma' class='dropdown-content'>
+                        <li><a href="/?lang=es">{% trans "Español" %}</a></li>
+                        <li><a href="/?lang=en">{% trans "Inglés" %}</a></li>
+                    </ul>
 
               </ul>
               <ul id="mobile-demo" class="side-nav">
@@ -61,20 +67,21 @@
                   </form>
                 </li>
                 <li><div class="divider"></div></li>
-                <li><a id="accesoInicio_sidenav" href="#">Inicio</a></li>
+                <li><a id="accesoInicio_sidenav" href="#">{% trans "Inicio" %}</a></li>
                 {% if user.is_authenticated %}
-                  <li><a id="NuevoPost_sidenav" href="{% url 'new_post' %}">Nuevo Post</a></li>
-                  <li><a href="{% url 'users_logout' %}">Salir</a></li>
+                  <li><a id="NuevoPost_sidenav" href="{% url 'new_post' %}">{% trans "Nuevo Post" %}</a></li>
+                  <li><a href="{% url 'users_logout' %}">{% trans "Salir" %}</a></li>
                 {% else %}
-                  <li><a id="Acceso_sidenav" href="#">Acceso</a></li>
-                  <li><a id="Registro_sidenav" href="#">Registro</a></li>
+                  <li><a id="Acceso_sidenav" href="#">{% trans "Acceso" %}</a></li>
+                  <li><a id="Registro_sidenav" href="#">{% trans "Registro" %}</a></li>
                 {% endif %}
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#">{% trans "Contacto" %}</a></li>
                 <li><div class="divider"></div></li>
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Categorías<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{% trans "Categorías" %}<i class="material-icons right">arrow_drop_down</i></a></li>
                   <ul id='dropdown1' class='dropdown-content'>
-                    <li><a id="categoria_fotos_sidenav" href="#!">Fotos</a></li>
-                    <li><a id="categoria_videos_sidenav" href="#!">Videos</a></li>
+                    {% for categoria in categoria_list%}
+                        <li><a href="{% url 'blogscat_list' nombre=categoria.nombre %}">{{categoria.nombre}}</a></li>
+                      {% endfor %}
                   </ul>
               </ul>
 

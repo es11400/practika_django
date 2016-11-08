@@ -1,9 +1,10 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
   <html>
     <head>
       <meta charset="UTF-8">
-      <title>Cuentame</title>
+      <title>Cuentame Avanzado</title>
         {% block stylesheets %}
             <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,8 +18,8 @@
           <section>
               <div class="container">
                   <h1>Cuentame</h1>
-                  <h5 class="flow-text">¿Tienes una historia? Pues cuéntanosla.</h5>
-                  <h5 class="flow-text">¿No tienes nada que contar? Pues valora la de los demás.</h5>
+                  <h5 class="flow-text">{% trans "¿Tienes una historia? Pues cuéntanosla." %}</h5>
+                  <h5 class="flow-text">{% trans "¿No tienes nada que contar? Pues valora la de los demás." %}</h5>
               </div>
           </section>
       {% endblock %}

@@ -1,7 +1,8 @@
+{% load i18n %}
 <!-- Modal Login de Usuario ( de momento de pega ) -->
     <div id="modalAcceso" class="modal bottom-sheet">
       <div class="modal-content">
-        <h4>Acceso</h4>
+        <h4>{% trans "Acceso" %}</h4>
         {{ error }}
         <form action="#" method="post" novalidate>{% csrf_token %}
           {{ login_form.as_p }}
@@ -13,7 +14,7 @@
   <!-- Modal Registro de Usuarios (de momento de pega ) -->
     <div id="modalRegistro" class="modal">
       <div class="modal-content">
-        <h4>Registro</h4>
+        <h4>{% trans "Registro" %}</h4>
         {{ error }}
         <form action="#" method="post" novalidate>{% csrf_token %}
           {{ signup_form.as_p }}

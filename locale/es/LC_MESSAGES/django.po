@@ -1,0 +1,142 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-07 21:11+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: blogs/templates/blogs/blog_list.html:40
+msgid "¡No existen Blogs! ¿Quieres ser el Primero?"
+msgstr "¡No existen Blogs! ¿Quieres ser el Primero?"
+
+#: cuentame/templates/base.html:21
+msgid "¿Tienes una historia? Pues cuéntanosla."
+msgstr "¿Tienes una historia? Pues cuéntanosla."
+
+#: cuentame/templates/base.html:22
+msgid "¿No tienes nada que contar? Pues valora la de los demás."
+msgstr "¿No tienes nada que contar? Pues valora la de los demás."
+
+#: cuentame/templates/includes/footer.html:8
+msgid ""
+"Hola esta es la práctica para Python, Django y REST<br> del KeepCoding "
+"&copy; Web Development Master Bootcamp."
+msgstr ""
+"Hola esta es la práctica para Python, Django y REST<br> del KeepCoding "
+"&copy; Web Development Master Bootcamp."
+
+#: cuentame/templates/includes/footer.html:11
+msgid "Enlaces"
+msgstr "Enlaces"
+
+#: cuentame/templates/includes/footer.html:13
+msgid "Acceso/Registro"
+msgstr "Acceso/Registro"
+
+#: cuentame/templates/includes/footer.html:14
+#: cuentame/templates/includes/nav.html:35
+#: cuentame/templates/includes/nav.html:78
+msgid "Contacto"
+msgstr "Contacto"
+
+#: cuentame/templates/includes/footer.html:20
+msgid "Categoría 1"
+msgstr "Categoría 1"
+
+#: cuentame/templates/includes/footer.html:21
+msgid "Categoría 2"
+msgstr "Categoría 2"
+
+#: cuentame/templates/includes/footer.html:22
+msgid "Categoría 3"
+msgstr "Categoría 3"
+
+#: cuentame/templates/includes/footer.html:23
+msgid "Categoría 4"
+msgstr "Categoría 4"
+
+#: cuentame/templates/includes/footer.html:30
+msgid "Hecho a mano por "
+msgstr "Hecho a mano por "
+
+#: cuentame/templates/includes/modals.html:5
+#: cuentame/templates/includes/nav.html:23
+#: cuentame/templates/includes/nav.html:75
+msgid "Acceso"
+msgstr "Acceso"
+
+#: cuentame/templates/includes/modals.html:17
+#: cuentame/templates/includes/nav.html:24
+#: cuentame/templates/includes/nav.html:76
+msgid "Registro"
+msgstr "Registro"
+
+#: cuentame/templates/includes/nav.html:18
+#: cuentame/templates/includes/nav.html:70
+msgid "Inicio"
+msgstr "Inicio"
+
+#: cuentame/templates/includes/nav.html:20
+#: cuentame/templates/includes/nav.html:72
+msgid "Nuevo Post"
+msgstr "Nuevo Post"
+
+#: cuentame/templates/includes/nav.html:21
+#: cuentame/templates/includes/nav.html:73
+msgid "Salir"
+msgstr "Salir"
+
+#: cuentame/templates/includes/nav.html:26
+msgid "Blogs"
+msgstr "Blogs"
+
+#: cuentame/templates/includes/nav.html:28
+#: cuentame/templates/includes/nav.html:80
+msgid "Categorías"
+msgstr "Categorías"
+
+#: cuentame/templates/includes/nav.html:36
+msgid "Idioma"
+msgstr "Idioma"
+
+#: cuentame/templates/includes/nav.html:38
+msgid "Español"
+msgstr "Español"
+
+#: cuentame/templates/includes/nav.html:39
+msgid "Inglés"
+msgstr "Inglés"
+
+#: entradas/templates/entradas/blogpost_list.html:6
+#: entradas/templates/entradas/bloguser_list.html:6
+msgid "Las entradas de "
+msgstr "Las entradas de "
+
+#: entradas/templates/entradas/includes/join_us.html:4
+msgid "¡No existen entradas!"
+msgstr "¡No existen entradas!"
+
+#: entradas/templates/entradas/new_post.html:3
+msgid "Crear Entrada"
+msgstr "Crear Entrada"
+
+#: entradas/templates/entradas/new_post.html:8
+msgid "Crear entrada"
+msgstr "Crear entrada"
+
+#: entradas/templates/entradas/new_post.html:15
+msgid "Guardar entrada"
+msgstr "Guardar entrada"

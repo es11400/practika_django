@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block section %}
 <section>
     <div class="container center-align">
-        <h4>Las entradas de {{ blog.nombre }} </h4>
+        <h4>{% trans "Las entradas de "%}{{ blog.nombre }} </h4>
     </div>
 </section>
     {% if postblog_list|length > 0 %}

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block section %}
 <section>
     <div class="container center-align">
-        <h4>Las entradas de {{ usuario.first_name }} {{ usuario.last_name }}</h4>
+        <h4>{% trans "Las entradas de "%}{{ usuario.first_name }} {{ usuario.last_name }}</h4>
     </div>
 </section>
     {% if postuser_list|length > 0 %}

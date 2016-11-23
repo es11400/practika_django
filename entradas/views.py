@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
 
@@ -34,7 +34,11 @@ class NewPostView(View):
         message = None
         new_post_form = CreatePostForm(request.POST, request.FILES)
         if new_post_form.is_valid():
-            new_post_form = CreatePostForm()
+            new_post_form = new_post_form.save()
+            # message = 'Post creado satisfactoriamente. <a href="/blogs/{0}/{1}">Ver Post</a>'.format(request.user, new_post_form.pk)
+            # new_post_form = CreatePostForm()
+            return redirect('blogs/{0}/{1}'.format(request.user, new_post_form.pk))
+
 
         context = {'new_post_form': new_post_form, 'message': message}
         return render(request, 'entradas/new_post.html', context)

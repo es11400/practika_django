@@ -2,7 +2,7 @@
 
 clear
 echo "Instalando el entorno virtual..."
-virtualenv env
+virtualenv -p python3 env
 source env/bin/activate
 pip install -r requirements.txt
 

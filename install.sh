@@ -13,10 +13,6 @@ clear
 echo "Creando el usuario Administrador:"
 python manage.py createsuperuser
 
-
-echo "Creating media folder..."
-mkdir media
-
 clear
 echo "Ya puedes crear tu Blog!"
 echo ""

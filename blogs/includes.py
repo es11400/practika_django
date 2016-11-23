@@ -6,6 +6,7 @@ from django.utils.datetime_safe import datetime
 
 from cuentame.settings import VISIBLE_SI, POSTxPAGINAS
 from entradas.models import post
+from blogs.models import blogs
 from categorias.models import categorias
 from users.forms import LoginForm, SignUpForm
 
@@ -65,6 +66,16 @@ class Inc():
                     password=signup_form.cleaned_data['pwd'],
                 )
                 django_login(request, user)
+                # Creamos automaticamente un Blog para el Usuario Registrado.
+
+                blog = blogs()
+                blog.nombre = "El Blog de {0} {1}".format(user.first_name, user.last_name)
+                blog.usuario = user
+                blog.visible = VISIBLE_SI
+                blog.save()
+
+                # -----------------------------------------------------------
+
                 signup_form = SignUpForm()
                 context = {'post_list': posts_pag, 'categoria_list': cat, 'error': error_message, 'login_form': login_form,
                            'signup_form': signup_form}

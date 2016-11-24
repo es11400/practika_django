@@ -4,7 +4,8 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect, render
 from django.utils.datetime_safe import datetime
 
-from cuentame.settings import VISIBLE_SI, POSTxPAGINAS
+from cuentame.settings import POSTxPAGINAS
+from cuentame.my_settings import *
 from entradas.models import post
 from blogs.models import blogs
 from categorias.models import categorias

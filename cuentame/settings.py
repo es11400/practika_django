@@ -147,13 +147,6 @@ LOGGING = {
     }
 }
 
-VISIBLE_SI = 'SI'
-VISIBLE_NO = 'NO'
-
-VISIBILIDAD = (
-    (VISIBLE_SI, VISIBLE_SI),
-    (VISIBLE_NO, VISIBLE_NO)
-)
 
 LOGIN_URL = '/'
 

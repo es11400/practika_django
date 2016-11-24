@@ -1,7 +1,7 @@
 from django.db import models
-from django.conf import settings
 
-VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
+from cuentame.my_settings import *
+
 
 # Create your models here.
 class categorias(models.Model):

@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.conf import settings
+from cuentame.my_settings import VISIBILIDAD
 
-VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
+# VISIBILIDAD = getattr(my_settings, 'VISIBILIDAD', None)
 
 # Create your models here.
 class blogs(models.Model):

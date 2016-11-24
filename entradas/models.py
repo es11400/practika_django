@@ -1,11 +1,11 @@
 from django.conf import settings
 from django.db import models
 
-
+from cuentame.my_settings import *
 from blogs.models import blogs
 from categorias.models import categorias
 
-VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
+# VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
 
 def media_url(instance, nombrefichero):
 

@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.utils.datetime_safe import datetime
 from rest_framework import filters
 from rest_framework.viewsets import ModelViewSet
-from cuentame.settings import VISIBLE_SI
+from cuentame.my_settings import *
 from entradas.models import post
 from entradas.permissions import PostPermission
 from entradas.serializers import PostSerializer, PostListSerializer

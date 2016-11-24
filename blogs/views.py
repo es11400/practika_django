@@ -10,7 +10,9 @@ from rest_framework.generics import get_object_or_404
 from blogs.includes import Inc
 from blogs.models import blogs, User
 from categorias.models import categorias
-from cuentame.settings import VISIBLE_SI, POSTxPAGINAS
+from cuentame.settings import POSTxPAGINAS
+from cuentame.my_settings import *
+
 from entradas.models import post
 from users.forms import LoginForm, SignUpForm
 from entradas.forms import CreatePostForm

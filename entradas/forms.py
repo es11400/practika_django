@@ -6,11 +6,11 @@ from django.forms.widgets import SelectMultiple
 from django.forms.widgets import TextInput
 from django.forms.widgets import Textarea
 from rest_framework import request
-
+from cuentame.my_settings import *
 from blogs.models import blogs
 from entradas.models import post
 
-VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
+# VISIBILIDAD = getattr(settings, 'VISIBILIDAD', None)
 
 class CreatePostForm(ModelForm):
 
